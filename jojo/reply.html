@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Poopoo888888.github.io : " />
+
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="javascripts/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
+    <script src="javascripts/jquery-2.0.3.min.js"></script>
+    <script src="javascripts/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="javascripts/jquery-ui.multidatespicker.js"></script>
+    
+    
+    <title>Poopoo888888.github.io</title>
+  </head>
+
+  <body>
+      <div class="page-header">
+        <h1>揪團王 <small>答覆活動</small></h1>
+      </div>    
+      <div class='container'>
+          <div class='row'>
+              <h1>老同學吃飯囉</h1>
+              <p>Tony邀請您參加<strong>老同學吃飯囉</strong></p>
+              <p class='lead'>台灣彩券公司在今年元旦發行每張售價2000元的「$2,600萬超級紅包」刮刮樂，上市不到10天，雖然還沒傳出有人刮中頭獎，但已有不少刮刮樂經銷商回報，已有人刮中貳獎百萬元，其中一位是位阿兵哥當天過生日，花2000元買了1張，結果就中了100萬元，也讓他整個人當場傻住，最後，說要將這100萬元做為買房子的頭期款。</p>
+              <p>請選擇您有空的時間</p>
+              <table class='table table-bordered' id='our_table'>
+                  <tr>
+                      <th></th>
+                      <th>1/6(一)</th>
+                      <th>1/11(六)</th>
+                      <th>1/12(日)</th>                  
+                  </tr>
+                  <tr>
+                      <td>10:00-12:00</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>12:00-14:00</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>14:00-16:00</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>16:00-18:00</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>18:00-20:00</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>20:00-22:00</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+              </table>
+              <button class='btn btn-primary'>確定</button>
+          </div>
+          
+          <style>
+              .highlighted{
+                  background-color: green;
+              }
+        
+          </style>
+          
+          <script>
+              $(function () {
+                var isMouseDown = false,
+                  isHighlighted;
+                $("#our_table td")
+                  .mousedown(function () {
+                    isMouseDown = true;
+                    $(this).toggleClass("highlighted");
+                    isHighlighted = $(this).hasClass("highlighted");
+                    return false; // prevent text selection
+                  })
+                  .mouseover(function () {
+                    if (isMouseDown) {
+                      $(this).toggleClass("highlighted", isHighlighted);
+                    }
+                  });
+
+                $(document)
+                  .mouseup(function () {
+                    isMouseDown = false;
+                  });
+              });            
+          </script
+          
+          
+          <div class='row'>
+              <h2>其他人的時間</h2>
+              <p>
+                  其他人是
+                  <span class="label label-info">1/11（六）下午</span>
+                  <span class="label label-info">1/11（六）晚上</span>
+                  <span class="label label-info">1/12（日）晚上</span>
+                  比較有空
+              </p>
+              <p>別人有空的時間如下</p>
+              <table class='table table-hover table-bordered'>
+                  <tr>
+                      <th></th>
+                      <th>1/6(一)</th>
+                      <th>1/11(六)</th>
+                      <th>1/12(日)</th>                  
+                  </tr>
+                  <tr>
+                      <td>08:00-12:00</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>12:00-18:00</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>18:00-22:00</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+              </table>
+          </div>          
+      </div>
+  </body>
+</html>
