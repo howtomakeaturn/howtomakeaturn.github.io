@@ -1,0 +1,36 @@
+<head>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/react/0.12.0/JSXTransformer.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/react/0.12.0/react.js'></script>
+    <script type="text/jsx" src='react-lightbox.jsx'></script>    
+</head>
+<body>
+    <h1>React Lightbox</h1>
+    <div id='react-canvas'></div>
+    
+    <script type="text/jsx">
+        /** @jsx React.DOM */
+        var ToggleLink = React.createClass({
+            render: function(){
+                return(<a href='#' onClick={this.props.openLightbox}>Click me to start!</a>);
+            }
+        });
+        
+        React.renderComponent(
+            <Lightbox>
+                <LightboxTrigger>
+                    <ToggleLink />
+                </LightboxTrigger>
+                <LightboxModal>
+                    <div>
+                        <h1>Welcome to React Lightbox!</h1>
+                        <p>This is a simple demo for the basic usage.</p>
+                        <p>View the source code of this page to see what's behind!</p>
+                    </div>
+                </LightboxModal>
+            </Lightbox>,                
+            document.getElementById('react-canvas')
+        );
+    </script>
+    
+</body>
+

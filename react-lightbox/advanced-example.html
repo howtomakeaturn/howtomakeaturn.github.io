@@ -1,0 +1,109 @@
+<head>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/react/0.12.0/JSXTransformer.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/react/0.12.0/react.js'></script>
+    <script type="text/jsx" src='react-lightbox.jsx'></script>    
+</head>
+<body>
+    <h1>React Lightbox</h1>
+    <h3>Example 5: An advanced example - Pricing system</h3>
+    <h4>Scenario</h4>
+    <p>A translation company is designing a pricing system for all its projects.</p>
+    <p>Basically, all the project is charged for how many words in it.</p>
+    <p>The formula is: wordcount * rate = price</p>
+    <p>But sometimes the project is too difficult to translate, therefore they need to set a fixed price for it.</p>
+    <p>They also need the system to show the final price in real-time in the setting panel.</p>
+    <hr />
+    <h4>Fee Setting</h4>
+    <div id='react-canvas'></div>
+        
+    <script type="text/jsx">
+        /** @jsx React.DOM */
+        var ToggleFee = React.createClass({                        
+            
+            getFee: function(){
+                if (this.props.fixed_fee != 0){
+                    return this.props.fixed_fee;
+                } else {
+                    return Math.round(this.props.word_count * this.props.rate);
+                }
+            },
+                
+            render: function() {
+                return ( <p>A project with {this.props.word_count} words will have final Fee: <a href='#' onClick={this.props.onClick}>${this.getFee()}</a> (click to change)</p> );                                                            
+            }
+        });
+
+        var FeePanel = React.createClass({                        
+
+            getFee: function(){
+                if (this.refs['rate']){
+                    var rate = this.refs['rate'].getDOMNode().value;
+                } else {
+                    var rate = this.props.rate;
+                }
+
+                if (this.refs['fixed_fee']){
+                    var fixed_fee = this.refs['fixed_fee'].getDOMNode().value;
+                } else {
+                    var fixed_fee = this.props.fixed_fee;
+                }
+                
+                if (fixed_fee != 0){
+                    return fixed_fee;
+                } else {
+                    return Math.round(this.props.word_count * rate);
+                }
+            },
+            
+            onRateChange: function(){
+                var rate = this.refs['rate'].getDOMNode().value;
+                this.forceUpdate();
+            },
+            
+            onFixedFeeChange: function(){
+                var fixed_fee = this.refs['fixed_fee'].getDOMNode().value;
+                this.forceUpdate();
+            },
+            
+            onClickSave: function(){
+                var rate = this.refs['rate'].getDOMNode().value;
+                var fixed_fee = this.refs['fixed_fee'].getDOMNode().value;
+                this.props.setLightboxState({ rate: rate, fixed_fee: fixed_fee });    
+                this.props.closeLightbox()
+                // maybe send an ajax here
+                // $.post(...);
+            },
+
+            render: function() {        
+                return(
+                    <div>
+                        <h3> fee setting</h3>
+                        <hr />
+                        <h4>Please set a rate: </h4>
+                        <h4><input ref='rate' type='text' defaultValue={ this.props.rate } onChange={ this.onRateChange } /></h4>
+                        <h4>Or set a fixed price: </h4>
+                        <h4><input ref='fixed_fee' type='text' defaultValue={ this.props.fixed_fee } onChange={ this.onFixedFeeChange } /></h4>
+                        <hr />
+                        <h4>Final Fee: ${ this.getFee() }</h4>
+                        <button className='btn-blue' onClick={this.onClickSave}>Save</button>        
+                    </div>
+                );
+            }
+        });
+
+            var data = { rate: 1.5, fixed_fee: 0, word_count: 344 };
+            React.renderComponent(
+                <Lightbox data={data}>
+                    <LightboxTrigger>
+                        <ToggleFee />
+                    </LightboxTrigger>
+                    <LightboxModal>
+                        <FeePanel />
+                    </LightboxModal>
+                </Lightbox>,                
+                document.getElementById('react-canvas')
+            );
+    </script>
+    
+</body>
+

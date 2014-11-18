@@ -1,0 +1,67 @@
+<head>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/react/0.12.0/JSXTransformer.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/react/0.12.0/react.js'></script>
+    <script type="text/jsx" src='react-lightbox.jsx'></script>    
+</head>
+<body>
+    <h1>React Lightbox</h1>
+    <h3>Example 4: Communication between elements</h3>
+    <div id='react-canvas'></div>
+    
+    <p>To communicate between elements, just set 'data' property for Lightbox.</p>
+    <p>The object you pass into 'data' will be set as react element state in Lightbox,</p>
+    <p>and then all these states in Lightbox will be transferred to all children's props.</p>
+    <p>So you can use all these values as props in children elements.</p>
+    <p>To update these states in children elements, use 'setLightboxState' property method.</p>
+    
+    <script type="text/jsx">
+        /** @jsx React.DOM */
+        var ToggleText = React.createClass({                        
+            render: function() {
+                var text = this.props.content.trim() ? 'View Notes' : 'Add Notes';                
+                if (this.props.content.trim()){
+                    return ( <a style={{color: 'red'}} href='#' onClick={this.props.onClick}>{text}</a> );                                                            
+                } else {
+                    return ( <a href='#' onClick={this.props.openLightbox}>{text}</a>);                                                
+                }                
+            }
+        });
+
+        var NotePanel = React.createClass({
+            
+            clickSave: function(){
+                var content = this.refs['note'].getDOMNode().value;
+                this.props.setLightboxState({ content: content});
+                // you may want to send ajax here
+                //$.post('/ajax/document/update-note', data);
+                this.props.closeLightbox();
+            },
+            
+            render: function(){
+                return (
+                    <div>
+                        <h3>Note</h3>
+                        <hr />
+                        <textarea ref='note' defaultValue={this.props.content} placeholder='Type something here...'></textarea>
+                        <hr />
+                        <button onClick={this.clickSave}>Save</button>        
+                    </div>
+                );
+            }
+        });
+
+        React.renderComponent(
+            <Lightbox data={{ content: ''}}>
+                <LightboxTrigger>
+                    <ToggleText />
+                </LightboxTrigger>
+                <LightboxModal>
+                    <NotePanel />
+                </LightboxModal>
+            </Lightbox>,                
+            document.getElementById('react-canvas')
+        );
+    </script>
+    
+</body>
+

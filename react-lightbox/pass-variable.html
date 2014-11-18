@@ -1,0 +1,58 @@
+<head>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/react/0.12.0/JSXTransformer.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/react/0.12.0/react.js'></script>
+    <script type="text/jsx" src='react-lightbox.jsx'></script>    
+</head>
+<body>
+    <h1>React Lightbox</h1>
+    <h3>Example 2: Pass variable into Lightbox</h3>
+    <div id='react-pic1'></div>
+    <div id='react-pic2'></div>
+    <p>Put any kind of html elements inside the LightboxModal.</p>
+    <p>You can pass variables in if you need.</p>
+
+    <script type="text/jsx">
+        /** @jsx React.DOM */
+        var ToggleLink = React.createClass({
+            render: function(){
+                return(<a href='#' onClick={this.props.openLightbox}>Click me to open image</a>);
+            }
+        });
+        
+        var img1 = 'jquery-dev-summit-mark.gif';
+        var img2 = 'logo.svg';
+        
+        React.renderComponent(
+            <Lightbox>
+                <LightboxTrigger>
+                    <ToggleLink />
+                </LightboxTrigger>
+                <LightboxModal>
+                    <div>
+                        <h1>This is how to pass variable</h1>
+                        <img src={img1} />
+                    </div>
+                </LightboxModal>
+            </Lightbox>,                
+            document.getElementById('react-pic1')
+        );
+
+        React.renderComponent(
+            <Lightbox>
+                <LightboxTrigger>
+                    <ToggleLink />
+                </LightboxTrigger>
+                <LightboxModal>
+                    <div>
+                        <h1>This is how to pass variable</h1>
+                        <img src={img2} style={{width: '100%'}} />
+                    </div>
+                </LightboxModal>
+            </Lightbox>,                
+            document.getElementById('react-pic2')
+        );
+
+    </script>
+    
+</body>
+
