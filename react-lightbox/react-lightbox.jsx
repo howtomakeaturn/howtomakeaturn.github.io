@@ -74,13 +74,11 @@ var LightboxTrigger = React.createClass({
     render: function(){
         this.props.children.props.onClick = this.props.openLightbox;
         for (j in this.props){
-            this.props.children.props[j] = this.props[j];                
+            if (j !== 'children'){
+                this.props.children.props[j] = this.props[j];                
+            }
         }
-        return(
-            <div>
-                {this.props.children}
-            </div>
-        );
+        return this.props.children;
     }
 });
 

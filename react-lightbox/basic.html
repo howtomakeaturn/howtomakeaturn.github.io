@@ -7,20 +7,15 @@
     <h1>React Lightbox</h1>
     <h3>Example 1: basic usage</h3>
     <div id='react-canvas'></div>
-    <p>The element in LightboxTrigger will get 'openLightbox' property automatically.</p>
-    <p>Trigger the 'openLightbox' method in whatever way you like.</p>    
+    <p>The element in LightboxTrigger will get 'openLightbox' property and bind it to onClick event automatically.</p>
+    <p>You can also trigger the 'openLightbox' method in whatever way you like.</p>    
     <script type="text/jsx">
         /** @jsx React.DOM */
-        var ToggleLink = React.createClass({
-            render: function(){
-                return(<a href='#' onClick={this.props.openLightbox}>Click me to open!</a>);
-            }
-        });
         
         React.renderComponent(
             <Lightbox>
                 <LightboxTrigger>
-                    <ToggleLink />
+                    <a href='#'>Click me to open!</a>
                 </LightboxTrigger>
                 <LightboxModal>
                     <div>
