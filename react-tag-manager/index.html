@@ -1,0 +1,65 @@
+<head>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/react/0.12.0/JSXTransformer.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/react/0.12.0/react.js'></script>
+    <script type="text/jsx" src='tag-manager.jsx'></script>    
+    <script type="text/jsx" src='my-custom-tag-manager.jsx'></script>    
+	<link rel="stylesheet" href="tag-manager.css">
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js'></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shThemeDefault.css">
+</head>
+<body>
+    <h1>React Tag Manager</h1>
+    <hr />
+    <h2>Basic example</h2>
+    <div id='simple-tag-manager'></div>
+    <h2>Advanced example</h2>
+    <div id='advanced-tag-manager'></div>
+    <h3>Documentation</h3>
+    <a href='https://github.com/howtomakeaturn/react-tag-manager'>View on Github</a>
+    <script type="text/jsx">
+        /** @jsx React.DOM */
+        var tags = [
+            { name: 'Jack', id: 1},
+            { name: 'Betty', id: 2},
+            { name: 'Kelly', id: 3},
+        ];
+        
+        var tagOptions = [
+            'apple',
+            'banana',
+            'cat'
+        ];
+
+        React.renderComponent( 
+            <TagManager tags={tags} tagOptions={tagOptions} />, 
+            document.getElementById('simple-tag-manager') 
+        );
+
+        var tags = [
+            { name: 'Jack', id: 1},
+            { name: 'Betty', id: 2},
+            { name: 'Kelly', id: 3},
+        ];
+        
+        var tagOptions = [
+            'apple',
+            'banana',
+            'cat'
+        ];
+
+        React.renderComponent(
+            <MyCustomTagManager tags={tags} tagOptions={tagOptions} />, 
+            document.getElementById('advanced-tag-manager') 
+        );
+
+    </script>
+
+    <script>
+         SyntaxHighlighter.all()
+    </script>    
+    
+</body>
+
